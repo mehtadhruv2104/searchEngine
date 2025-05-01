@@ -6,4 +6,11 @@ The user can send two main ways to search
 - query string : this can contain any combination of strings that the user wants to search for.
 - filter : This filter will have the basic mostly prompted fields - namespace, severity, appName and MsgID
 
+To start the server -
+1. Clone the Repo
+2. Go to cd/backend
+3. Add the Parquet Files in backend/data folder
+4. Run go mod tidy
+5. Run go run main.go
+
 
