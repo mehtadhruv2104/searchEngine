@@ -14,3 +14,10 @@ To start the server -
 5. Run go run main.go
 
 
+To start the client - 
+
+1. Clone the Repo
+2. Go to cd/frontend
+3. Add the backend server BaseURL in .env file  
+4. Run npm install
+5. Run npm run dev
