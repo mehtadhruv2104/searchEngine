@@ -23,21 +23,14 @@ func NewHandler(records []models.LogEntry, index search.Index) *Handler {
 	}
 }
 
-func checkEmptyString(s *string) bool {
-    if s == nil {
-        return true
-    }else if(*s == ""){
-		return true
-	}
-    return false
-}
 
 func validateRequest(req models.SearchRequest)(bool){
-	if(req.Query == "" &&  checkEmptyString(req.AppName) && checkEmptyString(req.MsgID) && checkEmptyString(req.Namespace) && checkEmptyString(req.Severity)){
+	if(req.Query == "" &&  req.AppName=="" && req.MsgID=="" && req.Severity=="" && req.Namespace==""){
 		return false
 	}
 	return true
 }
+
 
 
 func (h Handler)HandleSearch(c *gin.Context){
@@ -55,13 +48,14 @@ func (h Handler)HandleSearch(c *gin.Context){
 		c.JSON(http.StatusBadRequest, resp)
 		return
 	}
-	fmt.Println("request", req)
+	
 	filter := search.Filter{
 		SeverityString: req.Severity,
 		AppName: req.AppName,
 		MsgId: req.MsgID,
 		Namespace: req.Namespace,
 	}
+	fmt.Println("filter", filter)
 	start := time.Now()
 	filteredRecords,err := search.Search(h.Records,h.Index,req.Query,filter)
 	duration := time.Since(start).Milliseconds()

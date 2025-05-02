@@ -36,6 +36,10 @@ const SearchEngine = () =>{
         }
     }
 
+    const clearResults = () => {
+        setShowResults(false);
+        setResults(null);
+    }
 
 
     
@@ -44,7 +48,7 @@ const SearchEngine = () =>{
             <div className='flex flex-col gap-4'>
                 <Header />
                 <button onClick={handleSearch}>Click</button>
-                <SearchBox onSearch={handleSearch} setSearchQuery={setSearchQuery} searchQuery={searchQuery}/>
+                <SearchBox onSearch={handleSearch} setSearchQuery={setSearchQuery} searchQuery={searchQuery} loading={loading} clearResults={clearResults}/>
                 {loading && <Loading/>}
                 {showResults && (
                     <Results results={results} searchTime={searchTime} totalMatches={totalMatches}/>

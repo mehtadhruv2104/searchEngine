@@ -26,10 +26,10 @@ type LogEntry struct {
 
 type SearchRequest struct {
 	Query     string  `json:"query"`
-	Severity  *string `json:"severity"`
-	AppName   *string `json:"app_name"`
-	Namespace *string `json:"namespace"`
-	MsgID     *string `json:"msg_id"`
+	Severity  string `json:"severity"`
+	AppName   string `json:"app_name"`
+	Namespace string `json:"namespace"`
+	MsgID     string `json:"msg_id"`
 }
 
 type SearchResponse struct {

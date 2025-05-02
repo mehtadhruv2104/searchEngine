@@ -8,10 +8,10 @@ import (
 )
 
 type Filter struct {
-    SeverityString *string
-    AppName        *string
-    Namespace      *string
-	MsgId			*string
+    SeverityString string
+    AppName        string
+    Namespace      string
+	MsgId			string
 }
 
 func Search(records []models.LogEntry, index Index, query string, filter Filter) ([]models.LogEntry,error) {
@@ -78,16 +78,16 @@ func intersect(a, b []int) []int {
 }
 
 func matchesFilter(record models.LogEntry, filter Filter) bool {
-    if filter.SeverityString != nil && derefString(&record.SeverityString) != *filter.SeverityString {
+    if filter.SeverityString != "" && derefString(&record.SeverityString) != filter.SeverityString {
         return false
     }
-    if filter.AppName != nil && derefString(&record.AppName) != *filter.AppName {
+    if filter.AppName != "" && derefString(&record.AppName) != filter.AppName {
         return false
     }
-    if filter.Namespace != nil && derefString(&record.Namespace) != *filter.Namespace {
+    if filter.Namespace != "" && derefString(&record.Namespace) != filter.Namespace {
         return false
     }
-	if filter.MsgId != nil && derefString(&record.MsgId) != *filter.MsgId {
+	if filter.MsgId != "" && derefString(&record.MsgId) != filter.MsgId {
         return false
     }
     return true

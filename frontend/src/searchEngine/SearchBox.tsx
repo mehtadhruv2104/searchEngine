@@ -1,11 +1,19 @@
 import { useState } from "react";
 import { searchQueryInterface } from "./interface";
 
+interface SearchBoxProps{
+    onSearch:Function;
+    setSearchQuery:Function; 
+    searchQuery:searchQueryInterface; 
+    loading:boolean;
+    clearResults:Function;
+}
 
-const SearchBox = (props:{onSearch:Function, setSearchQuery:Function, searchQuery:searchQueryInterface}) => {
+
+const SearchBox = (props:SearchBoxProps) => {
 
 
-    const {searchQuery, setSearchQuery, onSearch} = props;
+    const {searchQuery, setSearchQuery, onSearch,loading, clearResults} = props;
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -24,6 +32,7 @@ const SearchBox = (props:{onSearch:Function, setSearchQuery:Function, searchQuer
             namespace:"",
             app_name:"",
         })
+        clearResults();
     }
 
     return(
@@ -75,12 +84,14 @@ const SearchBox = (props:{onSearch:Function, setSearchQuery:Function, searchQuer
             </div>
             <div className="flex justify-center flex-row gap-x-8">
                 <button
+                disabled={loading}
                 onClick={handleSearch}
                 className="px-6 py-3 bg-blue-600 text-white font-medium cursor-pointer rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-md transition duration-200"
                 >
                 Search
                 </button>
                 <button
+                disabled={loading}
                 onClick={handleClearAll}
                 className="px-6 py-3 bg-blue-600 text-white font-medium cursor-pointer rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-md transition duration-200"
                 >
