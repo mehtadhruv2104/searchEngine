@@ -21,3 +21,6 @@ To start the client -
 3. Add the backend server BaseURL in .env file  
 4. Run npm install
 5. Run npm run dev
+
+https://github.com/user-attachments/assets/550ef350-964c-4a71-b7ab-f08bcccceb85
+
